@@ -11,18 +11,13 @@ import java.util.List;
  *
  * @author ester
  */
-public class Usuario {
+public class Usuario extends Pessoa {
 
-    private int id;
-    private String nome;
-    private String email;
     private String senha;
     private List<Playlist> playlists;
 
     public Usuario(int id, String nome, String email, String senha) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
+        super(0, nome, email);
         this.senha = senha;
         this.playlists = new ArrayList<>();
     }
