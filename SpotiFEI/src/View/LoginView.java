@@ -181,6 +181,9 @@ public class LoginView extends javax.swing.JFrame {
 
             if (usuario != null) {
                 JOptionPane.showMessageDialog(this, "LOGIN RELIZADO COM SUCESSO! BEM-VINDO " + usuario.getNome());
+                dispose();
+                TelaInicialView inicio = new TelaInicialView();
+                inicio.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "EMAIL OU SENHA INVALIDOS !!!!!!!!!");
             }

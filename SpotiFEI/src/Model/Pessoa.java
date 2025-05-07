@@ -10,6 +10,10 @@ public abstract class Pessoa {
     protected String nome;
     protected String email;
 
+    public Pessoa() {
+    }
+
+    
     public Pessoa(int id, String nome, String email) {
         this.id = id;
         this.nome = nome;

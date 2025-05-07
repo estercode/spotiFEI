@@ -9,17 +9,26 @@ package Model;
  * @author ester
  */
 public class Musica {
+
     private int id;
     private String nome;
-    private String artista;
-    private String genero;
+    private Artista artista;
+    private Genero genero;
+    private int duracaoSegundos;
 
-    public Musica(int id, String nome, String artista, String genero) {
+  
+    public Musica(int id, String nome, Artista artista, Genero genero, int duracaoSegundos) {
         this.id = id;
         this.nome = nome;
         this.artista = artista;
         this.genero = genero;
+        this.duracaoSegundos = duracaoSegundos;
     }
+
+    public Musica() {
+    }
+
+   
 
     public int getId() {
         return id;
@@ -37,22 +46,33 @@ public class Musica {
         this.nome = nome;
     }
 
-    public String getArtista() {
+    public Artista getArtista() {
         return artista;
     }
 
-    public void setArtista(String artista) {
+    public void setArtista(Artista artista) {
         this.artista = artista;
     }
 
-    public String getGenero() {
+    public Genero getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(Genero genero) {
         this.genero = genero;
     }
-    
-    
-    
+
+    public int getDuracaoSegundos() {
+        return duracaoSegundos;
+    }
+
+    public void setDuracaoSegundos(int duracaoSegundos) {
+        this.duracaoSegundos = duracaoSegundos;
+    }
+
+   public String getInfoFormatada() {
+        return String.format("Música: %s | Artista: %s | Gênero: %s | Duração: %ds", 
+                nome, artista.getNome(), genero.getNome(), duracaoSegundos);
+    }
+
 }
