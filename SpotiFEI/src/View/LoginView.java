@@ -27,7 +27,10 @@ public class LoginView extends javax.swing.JFrame {
                 new AlterarSenhaView().setVisible(true);
 
             }
+
         });
+        
+
     }
 
     /**
@@ -177,20 +180,20 @@ public class LoginView extends javax.swing.JFrame {
         try {
             Connection conexao = ConexaoSQL.conectar();
             UsuarioDAO dao = new UsuarioDAO(conexao);
-            Usuario usuario = dao.buscarPorEmailESenha(email, senha);
+            Usuario usuario = dao.buscarPorEmailESenha(email, senha); // <-- BUSCA DO BANCO
 
             if (usuario != null) {
-                JOptionPane.showMessageDialog(this, "LOGIN RELIZADO COM SUCESSO! BEM-VINDO " + usuario.getNome());
+                System.out.println("ID logado: " + usuario.getId());
+                JOptionPane.showMessageDialog(this, "LOGIN REALIZADO COM SUCESSO!");
                 dispose();
-                TelaInicialView inicio = new TelaInicialView();
+                TelaInicialView inicio = new TelaInicialView(usuario); // <-- PASSA O USUÁRIO CORRETO
                 inicio.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(this, "EMAIL OU SENHA INVALIDOS !!!!!!!!!");
+                JOptionPane.showMessageDialog(this, "Email ou senha inválidos!");
             }
-            conexao.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "ERRO AO TENTAR LOGAR!!");
+            JOptionPane.showMessageDialog(this, "Erro ao tentar logar.");
         }
     }//GEN-LAST:event_entrarBttActionPerformed
 

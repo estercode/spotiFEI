@@ -17,8 +17,13 @@ public class Usuario extends Pessoa {
     private List<Playlist> playlists;
 
     public Usuario(int id, String nome, String email, String senha) {
-        super(0, nome, email);
+        super(id, nome, email);
         this.senha = senha;
+        this.playlists = new ArrayList<>();
+    }
+
+    public Usuario() {
+        super(); 
         this.playlists = new ArrayList<>();
     }
 

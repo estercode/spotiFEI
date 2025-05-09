@@ -4,16 +4,24 @@
  */
 package View;
 
+import DAO.UsuarioDAO;
+import Model.Usuario;
+import UtilSQL.ConexaoSQL;
+import java.sql.*;
+
 /**
  *
  * @author ester
  */
 public class TelaInicialView extends javax.swing.JFrame {
 
+    private Usuario usuario;
+
     /**
      * Creates new form TelaInicialView
      */
-    public TelaInicialView() {
+    public TelaInicialView(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -67,6 +75,11 @@ public class TelaInicialView extends javax.swing.JFrame {
         bttPlaylist.setBackground(new java.awt.Color(255, 255, 255));
         bttPlaylist.setForeground(new java.awt.Color(0, 0, 0));
         bttPlaylist.setText("Playlist");
+        bttPlaylist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttPlaylistActionPerformed(evt);
+            }
+        });
 
         bttHistorico.setBackground(new java.awt.Color(255, 255, 255));
         bttHistorico.setForeground(new java.awt.Color(0, 0, 0));
@@ -101,7 +114,7 @@ public class TelaInicialView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(bttHistorico)
                                 .addGap(90, 90, 90)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         painelLayout.setVerticalGroup(
             painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +131,7 @@ public class TelaInicialView extends javax.swing.JFrame {
                     .addComponent(bttBuscar)
                     .addComponent(bttPlaylist)
                     .addComponent(bttHistorico))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,9 +151,17 @@ public class TelaInicialView extends javax.swing.JFrame {
     private void bttBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttBuscarActionPerformed
         // TODO add your handling code here:
         dispose();
-        BuscarView buscar = new BuscarView();
+        BuscarView buscar = new BuscarView(this.usuario);
         buscar.setVisible(true);
+
     }//GEN-LAST:event_bttBuscarActionPerformed
+
+    private void bttPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPlaylistActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        PlaylistView playlist = new PlaylistView(this.usuario);
+        playlist.setVisible(true);
+    }//GEN-LAST:event_bttPlaylistActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,11 +191,22 @@ public class TelaInicialView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaInicialView().setVisible(true);
+ /*
+        try {
+            Connection conexao = ConexaoSQL.conectar();
+            UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+            Usuario usuario = usuarioDAO.buscarUsuarioPorId(1); // passe um ID válido aqui!
+
+            if (usuario != null) {
+                TelaInicialView tela = new TelaInicialView(usuario);
+                tela.setVisible(true);
+            } else {
+                System.out.println("Usuário não encontrado.");
             }
-        });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } */
     }
     //
 

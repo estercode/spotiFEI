@@ -8,6 +8,7 @@ import DAO.MusicaDAO;
 import Model.Artista;
 import Model.Genero;
 import Model.Musica;
+import Model.Usuario;
 import UtilSQL.ConexaoSQL;
 import java.util.List;
 import javax.swing.*;
@@ -31,8 +32,10 @@ public class BuscarView extends javax.swing.JFrame {
     private JScrollPane scrollPane;
     private JComboBox<String> comboFiltro;
     private JLabel lblFiltrarPor;
-
-    public BuscarView() {
+    private Usuario usuario;
+    
+    public BuscarView(Usuario usuario) {
+        this.usuario = usuario;
 
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,7 +89,7 @@ public class BuscarView extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Fecha a tela atual
-                TelaInicialView inicio = new TelaInicialView();
+                TelaInicialView inicio = new TelaInicialView(usuario);
                 inicio.setVisible(true);
             }
         });
@@ -213,13 +216,13 @@ public class BuscarView extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BuscarView().setVisible(true);
             }
 
-        });
+        });*/
 
     }
 }

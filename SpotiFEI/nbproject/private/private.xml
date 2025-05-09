@@ -3,8 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/View/TelaInicialView.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/Model/Playlist.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/DAO/PlaylistDAO.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/Model/Usuario.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/DAO/MusicaDAO.java</file>
             <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/View/LoginView.java</file>
             <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/View/BuscarView.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/View/PlaylistView.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/Model/Artista.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/Model/Genero.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/Model/Musica.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/Model/Pessoa.java</file>
+            <file>file:/C:/Users/ester/OneDrive%20-%20FEI/Documentos/ProjetoJava/SpotiFEI/src/View/CadastroUsuarioView.java</file>
         </group>
     </open-files>
 </project-private>
