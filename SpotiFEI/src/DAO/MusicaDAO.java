@@ -90,4 +90,43 @@ public class MusicaDAO {
 
         return musicas;
     }
+
+    public List<Musica> buscarTodasMusicas() throws SQLException {
+        List<Musica> musicas = new ArrayList<>();
+        String sql = """
+        SELECT m.id, m.nome, m.duracao_segundos, 
+               a.id AS artista_id, a.nome AS artista_nome,
+               g.id AS genero_id, g.nome AS genero_nome
+        FROM musicas m
+        JOIN artistas a ON m.artista_id = a.id
+        JOIN generos g ON m.genero_id = g.id
+        ORDER BY m.nome
+        """;
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Musica musica = new Musica();
+                musica.setId(rs.getInt("id"));
+                musica.setNome(rs.getString("nome"));
+                musica.setDuracaoSegundos(rs.getInt("duracao_segundos"));
+
+                // Configurar artista
+                Artista artista = new Artista();
+                artista.setId(rs.getInt("artista_id"));
+                artista.setNome(rs.getString("artista_nome"));
+                musica.setArtista(artista);
+
+                // Configurar gênero
+                Genero genero = new Genero();
+                genero.setId(rs.getInt("genero_id"));
+                genero.setNome(rs.getString("genero_nome"));
+                musica.setGenero(genero);
+
+                musicas.add(musica);
+            }
+        }
+        return musicas;
+    }
 }
