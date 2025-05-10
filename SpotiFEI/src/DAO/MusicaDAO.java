@@ -129,4 +129,23 @@ public class MusicaDAO {
         }
         return musicas;
     }
+
+    public void curtirMusica(int usuarioId, int musicaId) throws SQLException {
+        String sql = "INSERT INTO musicas_curtidas (usuario_id, musica_id) VALUES (?, ?) ON CONFLICT DO NOTHING";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, usuarioId);
+            stmt.setInt(2, musicaId);
+            stmt.executeUpdate();
+        }
+    }
+
+    public void descurtirMusica(int usuarioId, int musicaId) throws SQLException {
+        String sql = "INSERT INTO musicas_descurtidas (usuario_id, musica_id) VALUES (?, ?) ON CONFLICT DO NOTHING";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, usuarioId);
+            stmt.setInt(2, musicaId);
+            stmt.executeUpdate();
+        }
+    }
+
 }

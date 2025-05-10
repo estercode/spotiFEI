@@ -33,7 +33,7 @@ public class BuscarView extends javax.swing.JFrame {
     private JComboBox<String> comboFiltro;
     private JLabel lblFiltrarPor;
     private Usuario usuario;
-    
+
     public BuscarView(Usuario usuario) {
         this.usuario = usuario;
 
@@ -153,6 +153,39 @@ public class BuscarView extends javax.swing.JFrame {
                 + " | <b>Duração:</b> " + formatarDuracao(musica.getDuracaoSegundos()) + "</html>");
         lblInfo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        // Botões 💖 💔
+        JButton bttCurtir = new JButton("💖");
+        JButton bttDescurtir = new JButton("💔");
+        JPanel botoesPanel = new JPanel();
+        botoesPanel.add(bttCurtir);
+        botoesPanel.add(bttDescurtir);
+        musicaPanel.add(botoesPanel, BorderLayout.EAST);
+
+        try {
+            Connection conexao = ConexaoSQL.conectar();
+            MusicaDAO musicaDAO = new MusicaDAO(conexao);
+
+            bttCurtir.addActionListener(e -> {
+                try {
+                    musicaDAO.curtirMusica(usuario.getId(), musica.getId());
+                    JOptionPane.showMessageDialog(this, "Música curtida!");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            bttDescurtir.addActionListener(e -> {
+                try {
+                    musicaDAO.descurtirMusica(usuario.getId(), musica.getId());
+                    JOptionPane.showMessageDialog(this, "Música descurtida!");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
         musicaPanel.add(lblInfo, BorderLayout.CENTER);
         painelResultados.add(musicaPanel);
     }
@@ -223,7 +256,6 @@ public class BuscarView extends javax.swing.JFrame {
             }
 
         });*/
-
     }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
