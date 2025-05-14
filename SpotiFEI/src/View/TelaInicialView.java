@@ -42,6 +42,7 @@ public class TelaInicialView extends javax.swing.JFrame {
         bttBuscar = new javax.swing.JButton();
         bttPlaylist = new javax.swing.JButton();
         bttHistorico = new javax.swing.JButton();
+        bttSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +85,20 @@ public class TelaInicialView extends javax.swing.JFrame {
         bttHistorico.setBackground(new java.awt.Color(255, 255, 255));
         bttHistorico.setForeground(new java.awt.Color(0, 0, 0));
         bttHistorico.setText("Historico");
+        bttHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttHistoricoActionPerformed(evt);
+            }
+        });
+
+        bttSair.setBackground(new java.awt.Color(255, 255, 255));
+        bttSair.setForeground(new java.awt.Color(0, 0, 0));
+        bttSair.setText("Sair");
+        bttSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelLayout = new javax.swing.GroupLayout(painel);
         painel.setLayout(painelLayout);
@@ -92,36 +107,37 @@ public class TelaInicialView extends javax.swing.JFrame {
             .addGroup(painelLayout.createSequentialGroup()
                 .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelLayout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
                         .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelLayout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(bttBuscar)))
-                        .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(painelLayout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelLayout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(bttPlaylist)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bttHistorico)
-                                .addGap(90, 90, 90)))))
+                            .addComponent(bttSair)
+                            .addComponent(bttBuscar))))
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(bttPlaylist)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bttHistorico)
+                        .addGap(90, 90, 90)))
                 .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(191, 191, 191))
         );
         painelLayout.setVerticalGroup(
             painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(60, 60, 60)
                 .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,7 +147,9 @@ public class TelaInicialView extends javax.swing.JFrame {
                     .addComponent(bttBuscar)
                     .addComponent(bttPlaylist)
                     .addComponent(bttHistorico))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(bttSair)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,6 +180,19 @@ public class TelaInicialView extends javax.swing.JFrame {
         PlaylistView playlist = new PlaylistView(this.usuario);
         playlist.setVisible(true);
     }//GEN-LAST:event_bttPlaylistActionPerformed
+
+    private void bttHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttHistoricoActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        HistoricoView historico = new HistoricoView(this.usuario);
+        historico.setVisible(true);
+    }//GEN-LAST:event_bttHistoricoActionPerformed
+
+    private void bttSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSairActionPerformed
+        // TODO add your handling code here:
+        dispose(); // Fecha a janela atual
+        new CadastroUsuarioView().setVisible(true); // Abre a tela de cadastro
+    }//GEN-LAST:event_bttSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,6 +245,7 @@ public class TelaInicialView extends javax.swing.JFrame {
     private javax.swing.JButton bttBuscar;
     private javax.swing.JButton bttHistorico;
     private javax.swing.JButton bttPlaylist;
+    private javax.swing.JButton bttSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
