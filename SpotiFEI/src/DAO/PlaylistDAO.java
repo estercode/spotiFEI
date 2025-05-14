@@ -63,7 +63,7 @@ public class PlaylistDAO {
             return st.executeUpdate() > 0;
         }
     }
-
+// Lista todas as playlists de um usuário específico ID e nome
     public List<Playlist> listarPlaylistsUsuario(int usuarioId) throws SQLException {
         List<Playlist> playlists = new ArrayList<>();
         String sql = "SELECT id, nome FROM playlists WHERE usuario_id = ?";
@@ -83,7 +83,7 @@ public class PlaylistDAO {
         }
         return playlists;
     }
-
+     //Retorna todas as músicas de uma playlist
     public List<Musica> buscarMusicasPlaylist(int playlistId) throws SQLException {
         List<Musica> musicas = new ArrayList<>();
         String sql = """

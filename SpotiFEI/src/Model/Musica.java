@@ -16,7 +16,6 @@ public class Musica {
     private Genero genero;
     private int duracaoSegundos;
 
-  
     public Musica(int id, String nome, Artista artista, Genero genero, int duracaoSegundos) {
         this.id = id;
         this.nome = nome;
@@ -27,8 +26,6 @@ public class Musica {
 
     public Musica() {
     }
-
-   
 
     public int getId() {
         return id;
@@ -69,9 +66,11 @@ public class Musica {
     public void setDuracaoSegundos(int duracaoSegundos) {
         this.duracaoSegundos = duracaoSegundos;
     }
-
-   public String getInfoFormatada() {
-        return String.format("Música: %s | Artista: %s | Gênero: %s | Duração: %ds", 
+    
+    
+    // formatação do print na tela de busca
+    public String getInfoFormatada() {
+        return String.format("Música: %s | Artista: %s | Gênero: %s | Duração: %ds",
                 nome, artista.getNome(), genero.getNome(), duracaoSegundos);
     }
 

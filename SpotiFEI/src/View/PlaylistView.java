@@ -39,6 +39,7 @@ public class PlaylistView extends javax.swing.JFrame {
     private Usuario usuario;
     private PlaylistDAO playlistDAO;
     private MusicaDAO musicaDAO;
+    private Connection conexao;
 
     public PlaylistView(Usuario usuario) {
         this.usuario = usuario;
@@ -56,9 +57,15 @@ public class PlaylistView extends javax.swing.JFrame {
             Connection conexao = ConexaoSQL.conectar();
             this.playlistDAO = new PlaylistDAO(conexao);
             this.musicaDAO = new MusicaDAO(conexao);
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Erro ao conectar com o banco: " + e.getMessage());
             dispose();
+        } finally {
+            if (conexao != null) try {
+                conexao.close();
+            } catch (SQLException ignore) {
+            }
         }
     }
 

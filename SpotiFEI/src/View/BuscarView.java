@@ -5,6 +5,7 @@
 package View;
 
 import DAO.MusicaDAO;
+import DAO.HistoricoDAO;
 import Model.Artista;
 import Model.Genero;
 import Model.Musica;
@@ -33,9 +34,13 @@ public class BuscarView extends javax.swing.JFrame {
     private JComboBox<String> comboFiltro;
     private JLabel lblFiltrarPor;
     private Usuario usuario;
+    private Connection conexao;
+    private HistoricoDAO historicoDAO;
 
     public BuscarView(Usuario usuario) {
         this.usuario = usuario;
+
+        this.historicoDAO = new HistoricoDAO(conexao);
 
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +62,7 @@ public class BuscarView extends javax.swing.JFrame {
         bttBuscar.setBounds(600, 30, 100, 30);
         painelPrincipal.add(bttBuscar);
 //💖💔
-        bttVoltar = new JButton("◀");
+        bttVoltar = new JButton("Voltar");
         bttVoltar.setBounds(50, 520, 100, 30);
         painelPrincipal.add(bttVoltar);
 
@@ -118,12 +123,14 @@ public class BuscarView extends javax.swing.JFrame {
                 default:
                     resultados = musicaDAO.buscarPorNome(termoBusca);
             }
-
+            conexao.close();
             if (resultados.isEmpty()) {
                 painelResultados.add(new JLabel("Nenhum resultado encontrado."));
             } else {
                 for (Musica m : resultados) {
                     adicionarMusicaPanel(m);
+                    historicoDAO.registrarBusca(usuario.getId(), m.getId());
+
                 }
             }
 
@@ -171,7 +178,13 @@ public class BuscarView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Música curtida!");
                 } catch (SQLException ex) {
                     ex.printStackTrace();
+                } finally {
+                    if (conexao != null) try {
+                        conexao.close();
+                    } catch (SQLException ignore) {
+                    }
                 }
+
             });
 
             bttDescurtir.addActionListener(e -> {
@@ -194,6 +207,18 @@ public class BuscarView extends javax.swing.JFrame {
         int minutos = segundos / 60;
         int segundosRestantes = segundos % 60;
         return String.format("%d:%02d", minutos, segundosRestantes);
+    }
+
+    @Override
+    public void dispose() {
+        try {
+            if (conexao != null && !conexao.isClosed()) {
+                conexao.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        super.dispose(); // Chama o método original para fechar a janela
     }
 
     /**

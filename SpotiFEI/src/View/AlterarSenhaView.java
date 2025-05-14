@@ -188,29 +188,32 @@ public class AlterarSenhaView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+     // Botão "Excluir Usuário" - redireciona para a tela de exclusão de conta
     private void bttExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttExcluirUsuarioActionPerformed
         // TODO add your handling code here:
         dispose();
         new ExcluirUsuarioView().setVisible(true);
     }//GEN-LAST:event_bttExcluirUsuarioActionPerformed
-
+    // Botão "Nova Senha" - define nova senha ao clicar
     private void bttNovaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttNovaSenhaActionPerformed
         // TODO add your handling code here:
+        // Obtém os dados dos campos
         String email = txtEmail.getText().trim();
         String senhaNova = txtNovaSenha.getText().trim();
-
+        
+        // Verifica se os campos foram preenchidos
         if (email.isEmpty() || senhaNova.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos!!");
             return;
         }
         try {
+             // Estabelece conexão com o banco de dados
             Connection conexao = ConexaoSQL.conectar();
             UsuarioDAO dao = new UsuarioDAO(conexao);
             boolean sucesso = dao.alterarSenha(email, senhaNova);
             conexao.close();
             if (sucesso) {
-
+                // Mensagem de sucesso e redirecionamento para login
                 JOptionPane.showMessageDialog(null, "SENHA ALTERADA COM SUCESSO!!");
                 dispose();
                 new LoginView().setVisible(true);
@@ -223,7 +226,7 @@ public class AlterarSenhaView extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_bttNovaSenhaActionPerformed
-
+    // Botão "Login" - redireciona para a tela de login
     private void bttLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLoginActionPerformed
         // TODO add your handling code here:
         dispose();
