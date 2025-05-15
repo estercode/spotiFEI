@@ -74,8 +74,7 @@ public class UsuarioDAO {
             return linhasAfetadas > 0;
         }
     }
-    
-    
+
     // Busca um usuário pelo seu ID
     public Usuario buscarUsuarioPorId(int id) throws SQLException {
 
@@ -100,15 +99,48 @@ public class UsuarioDAO {
         return null;
     }
 
-    //Excluir um usuário do banco de dados com base no ID
+    //Excluir um usuário do banco de dados com base no ID, exclui playlist e musicas curtidas e descurtidas associadas ao ID
     public boolean excluirUsuario(int id) throws SQLException {
-        String sql = "DELETE FROM usuarios  WHERE id = ?";
-        try (PreparedStatement st = conexao.prepareStatement(sql)) {
-            st.setInt(1, id);
 
-            int linhasAfetadas = st.executeUpdate();
+        String excluirPlaylistMusicasSQL = "DELETE FROM playlist_musicas WHERE playlist_id IN (SELECT id FROM playlists WHERE usuario_id = ?)";
+        String excluirCurtidasSQL = "DELETE FROM musicas_curtidas WHERE usuario_id = ?";
+        String excluirDescurtidasSQL = "DELETE FROM musicas_descurtidas WHERE usuario_id = ?";
+        String excluirHistoricoSQL = "DELETE FROM historico_buscas WHERE usuario_id = ?";
+        String excluirPlaylistsSQL = "DELETE FROM playlists WHERE usuario_id = ?";
+        String excluirUsuarioSQL = "DELETE FROM usuarios WHERE id = ?";
+
+        try (PreparedStatement stmtPlaylistMusicas = conexao.prepareStatement(excluirPlaylistMusicasSQL); 
+             PreparedStatement stmtCurtidas = conexao.prepareStatement(excluirCurtidasSQL);
+             PreparedStatement stmtDescurtidas = conexao.prepareStatement(excluirDescurtidasSQL); 
+             PreparedStatement stmtHistorico = conexao.prepareStatement(excluirHistoricoSQL); 
+             PreparedStatement stmtPlaylists = conexao.prepareStatement(excluirPlaylistsSQL); 
+             PreparedStatement stmtUsuario = conexao.prepareStatement(excluirUsuarioSQL)) {
+
+            // 1. playlist_musicas
+            stmtPlaylistMusicas.setInt(1, id);
+            stmtPlaylistMusicas.executeUpdate();
+
+            // 2. musicas_curtidas
+            stmtCurtidas.setInt(1, id);
+            stmtCurtidas.executeUpdate();
+
+            // 3. musicas_descurtidas
+            stmtDescurtidas.setInt(1, id);
+            stmtDescurtidas.executeUpdate();
+
+            // 4. historico_buscas
+            stmtHistorico.setInt(1, id);
+            stmtHistorico.executeUpdate();
+
+            // 5. playlists
+            stmtPlaylists.setInt(1, id);
+            stmtPlaylists.executeUpdate();
+
+            // 6. usuarios
+            stmtUsuario.setInt(1, id);
+            int linhasAfetadas = stmtUsuario.executeUpdate();
+
             return linhasAfetadas > 0;
         }
     }
-
 }

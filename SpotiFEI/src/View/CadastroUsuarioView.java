@@ -203,19 +203,23 @@ public class CadastroUsuarioView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
+// Ação ao clicar no botão "CADASTRAR"
     private void cadastrarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarBotaoActionPerformed
         // TODO add your handling code here:
 
         String nome = txtNome.getText();
         String email = txtEmail.getText();
-        String senha = new String(txtSenha.getText()); //NAO ESQUECER DE MUDAR PARA PASSWORD
+        String senha = new String(txtSenha.getText());
 
+        // Cria um novo objeto Usuario
         Usuario usuario = new Usuario(0, nome, email, senha);
+
         System.out.println("Usuário cadastrado: ");
         System.out.println("Nome: " + usuario.getNome());
         System.out.println("Email: " + usuario.getEmail());
         System.out.println("Senha: " + usuario.getSenha());
 
+        //conexao ao banco de dados
         try {
             Connection conexao = ConexaoSQL.conectar();
             UsuarioDAO dao = new UsuarioDAO(conexao);
