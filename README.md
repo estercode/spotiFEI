@@ -86,7 +86,7 @@ Como o projeto foi feito individualmente, **não foi implementado o perfil de ad
 
 A persistência dos dados é feita no PostgreSQL. A estrutura do banco contempla tabelas para:
 
-- `usuarios`
+- `usuarios` 
 - `musicas`
 - `artistas`
 - `generos`
@@ -117,7 +117,7 @@ As funcionalidades atendem integralmente os requisitos definidos para projetos i
 
 
 
-## 8. Conclusão
+## 7. Conclusão
 
 O projeto Spotifei foi uma oportunidade prática de integrar os principais conhecimentos do curso em um sistema funcional, realista e bem estruturado. Além dos aprendizados técnicos, o trabalho exigiu organização, controle de versão e documentação adequada.
 
