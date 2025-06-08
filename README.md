@@ -3,9 +3,9 @@
 **Disciplina**: CCM310  - ARQUITETURA DE SOFTWARE E PROGRAMAÇÃO ORIENTADA A OBJETOS
 
 **Aluno**: *Ester Pereira dos Santos Nascimento*  
-**RA**: *22.123.110-3*  
 **Curso**: *Ciência da Computação*  
 
+**Nota**: 9
 
 ---
 
