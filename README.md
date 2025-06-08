@@ -5,7 +5,7 @@
 **Aluno**: *Ester Pereira dos Santos Nascimento*  
 **Curso**: *Ciência da Computação*  
 
-**Nota**: 9
+**Nota**: *9*
 
 ---
 
